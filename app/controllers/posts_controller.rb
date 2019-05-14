@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.like = 0
     if @post.save
       redirect_to root_path
     else
