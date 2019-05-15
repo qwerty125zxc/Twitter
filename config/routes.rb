@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :userprofiles
 
+  get '/like', to: "post#like_info", as: "like_info"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

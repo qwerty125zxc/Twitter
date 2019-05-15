@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
  before_action :authenticate_user!
- before_action :find_post, only: [:show, :destroy]
+ before_action :find_post, only: [:show, :destroy, :like_info]
   def new
   	@post = Post.new
   end
@@ -21,6 +21,15 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to root_path
+  end
+
+  def like_info
+    @post.like = @post.like + 1
+    # update
+    #зробити щоб юзер міг забрати лайк, якщо це його лайк
+    respond_to do |format|
+       format.js
+     end
   end
 
 private
