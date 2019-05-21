@@ -1,0 +1,7 @@
+<h1>Profiles#show</h1>
+<p>Find me in app/views/profiles/show.html.erb</p>
+
+Name: <%= current_user.userprofile.name %><br />
+Description <%= current_user.userprofile.description %>
+<%= link_to "edit", edit_userprofile_path(current_user.id) %><br />
+

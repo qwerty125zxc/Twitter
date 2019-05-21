@@ -1,0 +1,7 @@
+<h1>Profiles#edit</h1>
+<p>Find me in app/views/profiles/edit.html.erb</p>
+<%= form_for @userprofile, url: userprofile_path(current_user.id) do |f| %>
+  Name: <%= f.text_field :name %><br />
+  Description: <%= f.text_field  :description %>
+  <%= f.submit "Update" %>
+<% end %>
