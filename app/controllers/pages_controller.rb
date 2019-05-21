@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :checkprofile
   def index
   	if user_signed_in?
-  		if current.user.userprofile.nil?
+  		if current_user.userprofile.nil?
   			redirect_to new_userprofile_paths
   		end
   	end
