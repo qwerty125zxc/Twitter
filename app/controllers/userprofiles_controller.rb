@@ -16,12 +16,13 @@ class UserprofilesController < ApplicationController
   end
 
   def show
+    @post = Post.new
   end
 
   def update
     @userprofile = Userprofile.find_by(user_id: current_user.id)
     if @userprofile.update(profile_params)
-       redirect_to userprofile_path(@userprofile.id)
+       redirect_to user_path(@userprofile.id)
      else render 'new'
     end
 

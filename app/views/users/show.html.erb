@@ -1,0 +1,11 @@
+Name: <%= current_user.userprofile.name %><br />
+Description <%= current_user.userprofile.description %>
+<%= link_to "edit", edit_userprofile_path(current_user.id) %><br />
+<% if current_user.following?(@user) %>
+    <%= render 'unfollow' %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+
+<p class="pole btn btn-outline-info"><strong>Following: </strong> <%= link_to @user.followed_users.count, following_user_path(@user.id) %><%=  %></p><br />
+<p class="pole btn btn-outline-info"><strong>Followers: </strong><%= link_to @user.followers.count, followers_user_path(@user.id) %></p>
