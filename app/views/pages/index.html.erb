@@ -10,5 +10,20 @@
        <b><%= post.title %></b><br />
        <%= post.body %></p>
        <p><%= link_to "Read More", post_path(post.id) %></p>
+    <% pre_like = post.likes.find{ |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+
+      <%= button_to post_like_path(post, pre_like), method: :delete, class: "buttonlike" do %>
+        <i class="fas fa-heart fa-2x" style="color: red;"></i>
+      <% end %>
+    <% else %>
+      <%= button_to post_likes_path(post), method: :post, class: "buttonlike" do %>
+        <i class="fas fa-heart fa-2x" style="color: silver;"></i>
+      <% end %>
+    <% end %>
+      <b><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></b>
+      <%= render 'comment_list', {post: post} %>
+    <hr />
+    <%= render 'comment_form', {post: post}%>
     <% end %>
 <% end %>

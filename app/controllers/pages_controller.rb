@@ -6,7 +6,9 @@ class PagesController < ApplicationController
   			redirect_to new_userprofile_paths
   		end
   	end
+    @user = User.find_by(id: params[:id])
   	@posts = Post.all
+    @users = User.all
   end
 
   def checkprofile

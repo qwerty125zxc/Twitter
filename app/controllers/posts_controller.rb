@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
  before_action :authenticate_user!
- before_action :find_post, only: [:show, :destroy]
+ before_action :find_post, only: [:show, :edit, :update, :destroy]
+
   def new
   	@post = Post.new
   end
@@ -9,13 +10,22 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.like = 0
     if @post.save
+      flash[:notice] = "post successfully created"
       redirect_to root_path
     else
+      flash[:error] = "post has error with created"
       render 'new'
     end
   end
 
   def show
+  end
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -26,7 +36,7 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:user_id, :title, :body, :like)
+    params.require(:post).permit(:user_id, :title, :body,  {posts: []})
   end
 
   def find_post
