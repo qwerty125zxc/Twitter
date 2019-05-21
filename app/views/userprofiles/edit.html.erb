@@ -3,5 +3,6 @@
 <%= form_for @userprofile, url: userprofile_path(current_user.id) do |f| %>
   Name: <%= f.text_field :name %><br />
   Description: <%= f.text_field  :description %>
+  <%= f.file_field :avatar %>
   <%= f.submit "Update" %>
 <% end %>

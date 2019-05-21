@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   	end
     @user = User.find_by(id: params[:id])
   	@posts = Post.all
+    @post = Post.find_by(id: params[:id])
     @users = User.all
   end
 

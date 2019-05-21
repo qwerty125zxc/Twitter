@@ -1,11 +1,12 @@
 <h1>Pages#index</h1>
 <p>Find me in app/views/pages/index.html.erb</p>
-
+<% if user_signed_in? %>
 <%= link_to "Create new post",  new_post_path %>
 <% if @posts == [] %>
     <p>Create new post</p>
-<% else %>
+<% else %><br />
     <% @posts.each do |post| %>
+      <%= image_tag(post.user.userprofile.avatar_url, size: "30x30") %>
        <p>User <b><%= post.user.userprofile.name%></b>  write: <br />
        <b><%= post.title %></b><br />
        <%= post.body %></p>
@@ -26,4 +27,21 @@
     <hr />
     <%= render 'comment_form', {post: post}%>
     <% end %>
+<% end %>
+<% else %>
+<% if @posts == [] %>
+    <p>Create new post</p>
+<% else %><br />
+    <% @posts.each do |post| %>
+      <%= image_tag(post.user.userprofile.avatar_url, size: "30x30") %>
+       <p>User <b><%= post.user.userprofile.name%></b>  write: <br />
+       <b><%= post.title %></b><br />
+       <%= post.body %></p>
+       <p><%= link_to "Read More", post_path(post.id) %></p>
+
+      <b><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></b>
+      <%= render 'comment_list', {post: post} %>
+    <hr />
+    <% end %>
+<% end %>
 <% end %>

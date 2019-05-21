@@ -1,11 +1,21 @@
+<%= image_tag(current_user.userprofile.avatar_url, size: "30x30") %>
 Name: <%= current_user.userprofile.name %><br />
 Description <%= current_user.userprofile.description %>
-<%= link_to "edit", edit_userprofile_path(current_user.id) %><br />
+
+<% if @user != current_user %>
 <% if current_user.following?(@user) %>
     <%= render 'unfollow' %>
   <% else %>
     <%= render 'follow' %>
   <% end %>
-
+  <% else %>
+<%= link_to "edit", edit_userprofile_path(current_user.id) %><br />
+<% end %>
 <p class="pole btn btn-outline-info"><strong>Following: </strong> <%= link_to @user.followed_users.count, following_user_path(@user.id) %><%=  %></p><br />
 <p class="pole btn btn-outline-info"><strong>Followers: </strong><%= link_to @user.followers.count, followers_user_path(@user.id) %></p>
+
+
+  <%# @posts.current_user.each do | post | %>
+      <%#= post.title %>
+      <%#= post.body %>
+  	<%# end %>

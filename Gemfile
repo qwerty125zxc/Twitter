@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'railroady'
 gem 'will_paginate', '~> 3.1.0'
+gem 'tinymce-rails'
+gem 'carrierwave', '~> 1.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
